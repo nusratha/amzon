@@ -39,10 +39,9 @@ public class AllfilterPage {
 
     public void launchAmazonPage()
     {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\NUSRATH\\Downloads\\chromedriver.exe");
         utilities.driver = new ChromeDriver();
-        utilities.driver.manage().window().maximize();
         utilities.driver.get("https://www.amazon.in/");
+        utilities.driver.manage().window().maximize();
         System.out.println("Page Title is :" + utilities.driver.getTitle() );
     }
 
@@ -50,10 +49,13 @@ public class AllfilterPage {
 
         Thread.sleep(2000);
         utilities.driver.findElement(By.xpath("//a[@id='nav-hamburger-menu']")).click();
+        utilities.driver.findElement(By.xpath("//div[text()='shop by department']")).isDisplayed();
         Thread.sleep(2000);
         utilities.driver.findElement(By.xpath("//div[text()='TV, Appliances, Electronics']")).click();
+        utilities.driver.findElement(By.xpath("//div[text()='tv, audio & cameras']")).isDisplayed();
         Thread.sleep(2000);
         utilities.driver.findElement(By.linkText("Televisions")).click();
+        utilities.driver.findElement(By.xpath("//span[text()='Brands']")).isDisplayed();
         Thread.sleep(2000);
         utilities.driver.findElement(By.xpath("//span[text()='Samsung']")).click();
         utilities.driver.findElement(By.xpath("//span[@class='a-button a-button-dropdown a-button-small']")).click();
@@ -77,6 +79,8 @@ public class AllfilterPage {
         String actualString = utilities.driver.findElement(By.xpath("//h1[text()=' About this item ']")).getText();
         String expectedString = "About this item";
         Assert.assertEquals(actualString, expectedString);
+        System.out.println("Actual String :" +actualString);
+        System.out.println("Expected String :" + expectedString);
 
 //        allfilterdropdownbutton.click();
 //        Thread.sleep(2000);
